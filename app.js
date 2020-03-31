@@ -1,5 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const compression = require('compression')
+
 
 const app = express();
 let classData = [];
@@ -7,6 +9,7 @@ let lastUploaded = "-/-";
 
 app.set("view engine", "ejs");
 
+app.use(compression());
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({
   extended: true
