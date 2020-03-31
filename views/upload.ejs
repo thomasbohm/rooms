@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" translate=no>
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="styles.css">
+  <title>Upload CSV</title>
+</head>
+
+<body>
+  <header>
+    <nav class="navbar navbar-expand-sm navbar-dark bg-success fixed-top">
+      <a class="navbar-brand mr-4" href="#">
+        <img class="rounded mr-2" src="logo.png" alt="Logo" width="50" height="50">
+        Sprachschule Aktiv
+      </a>
+      <div class="navbar-nav">
+        <a class="nav-item nav-link" href="/all">Alle Kurse</a>
+      </div>
+    </nav>
+  </header>
+
+  <div class="container content-section">
+    <h1 class="mb-4">Anleitung:</h1>
+
+    <h3>1. CSV-Datei mit dem <span data-toggle="tooltip" data-placement="top" title="Raumbuchungssystem">RBS</span> erstellen:</h3>
+    <ol>
+      <li><a href="http://sprachschule-aktiv-muenchen.com/mrbs/web" target="_blank">Raumbuchungssystem-Seite</a> öffnen</li>
+      <li>In der Menü-Leiste auf <strong>Bericht</strong> klicken</li>
+      <li>Start- <strong>und</strong> Enddatum auf das <strong>heutige Datum</strong> setzen</li>
+      <li>Bereich <strong>München</strong> wählen</li>
+      <li>Format <strong>CSV</strong> wählen</li>
+      <li>Sortieren nach <strong>Startdatum</strong></li>
+      <li>Auf <strong>Bericht erstellen</strong> klicken</li>
+    </ol>
+    <hr>
+    <h3>2. CSV-Datei hier hochladen:</h3>
+    <input class="ml-4 mt-3 mb-2" type="file" name="csvFile" onchange="handleFiles(this.files)" accept=".csv" required>
+    <p class="ml-4 text-secondary">Hochgeladen am <%= lastUploaded %></p>
+    <hr>
+    <h3>3. Einträge überprüfen:</h3>
+    <ul>
+      <li>Sind das auch wirklich die Kurse für <strong>München</strong> und für <strong>heute</strong>?</li>
+      <li>Werden alle Flaggen angezeigt? Rechtschreibfehler?</li>
+    </ul>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  <script src="papaparse.min.js" charset="utf-8"></script>
+  <script src="upload.js" charset="utf-8"></script>
+  <script>
+    $(function() {
+      $('[data-toggle="tooltip"]').tooltip()
+    })
+  </script>
+</body>
+
+</html>
