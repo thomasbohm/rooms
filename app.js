@@ -43,6 +43,7 @@ app.get("/dashboard", function(req, res) {
   //console.log("upcoming ("+sum+"): " +upcoming);
 
   if (upcoming.length===0) {
+    classData = [];
     res.render("empty");
   } else {
     let displayed = [upcoming[0]];
@@ -75,11 +76,11 @@ app.get("/all", function(req, res) {
 app.post("/all", function(req, res) {
   classData = JSON.parse(req.body.data);
   lastUploaded = req.body.date;
-  console.log("CSV file successfully uploaded.");
+  //console.log("CSV file successfully uploaded.");
 
   res.redirect("/all");
 });
 
 app.listen(3000, function() {
-  console.log("Server started on port 3000.");
+  //console.log("Server started on port 3000.");
 });

@@ -5,3 +5,16 @@
   border: 1px solid #dddddd;
   border-radius: 3px;
 }
+
+/* Dashboard */
+.db-time {
+  font-size: 3.5rem;
+}
+
+.db-entry {
+  font-size: 3rem;
+}
+
+.db-flag {
+  font-size: 4rem;
+}
