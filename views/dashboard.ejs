@@ -10,51 +10,51 @@
 </head>
 
 <body>
-  <% for (const d of data) { %>
-  <table class="table table-bordered table-striped mb-0">
-    <thead class="bg-success">
-      <tr>
-        <th class="text-center align-middle" colspan="6">
-          <h1 class="db-time mb-0 text-white"><%= d.time %></h1>
-        </th>
-      </tr>
-    </thead>
-    <% if(d === data[0]){ %>
-    <tr>
-      <th class="text-secondary" colspan="4">KURS | COURSE</th>
-      <th class="text-secondary pr-0">RAUM | ROOM</th>
-      <th class="text-secondary">TERMINAL</th>
-    </tr>
-    <% } %>
-    <% for (const c of d.classes) { %>
-    <tr>
-      <td class="text-center align-middle text-dark" style="width: 5%;">
-        <h2 class="db-flag mb-0"><%= c[0] %></h2>
-      </td>
-      <td class="align-middle text-dark" style="width: 40%">
-        <h3 class="db-entry font-weight-light"><%= c[1] %></h3>
-      </td>
-      <td class="align-middle text-dark" style="width: 5%">
-        <h3 class="db-entry font-weight-light"><%= c[2] %></h3>
-      </td>
-      <td class="align-middle text-dark" style="width: 20%">
-        <h3 class="db-entry font-weight-light"><%= c[3] %></h3>
-      </td>
-      <td class="align-middle text-dark" style="width: 20%">
-        <h3 class="db-entry"><strong><%= c[4] %></strong></h3>
-      </td>
-      <% if(["Argentinien","Chile","Cuba","Peru","USA"].includes(c[4])) { %>
-      <td class="align-middle text-dark" style="width: 5%">
-        <h3 class="db-entry"><strong>2</strong></h3>
-      </td>
-      <% } else { %>
-      <td class="align-middle text-dark" style="width: 5%">
-        <h3 class="db-entry"><strong>1</strong></h3>
-      </td>
+  <% for (const timeSlot of data) { %>
+    <table class="table table-bordered table-striped mb-0">
+      <thead class="bg-success">
+        <tr>
+          <th class="text-center align-middle" colspan="6">
+            <h1 class="db-time mb-0 text-white"><%= d.time %></h1>
+          </th>
+        </tr>
+      </thead>
+      <% if(timeSlot === data[0]){ %>
+        <tr>
+          <th class="text-secondary" colspan="4">KURS | COURSE</th>
+          <th class="text-secondary pr-0">RAUM | ROOM</th>
+          <th class="text-secondary">TERMINAL</th>
+        </tr>
       <% } %>
-    </tr>
-    <% } %>
-  </table>
+      <% for (const c of timeSlot.classes) { %>
+        <tr>
+          <td class="text-center align-middle text-dark" style="width: 5%;">
+            <h2 class="db-flag mb-0"><%= c[0] %></h2>
+          </td>
+          <td class="align-middle text-dark" style="width: 40%">
+            <h3 class="db-entry font-weight-light"><%= c[1] %></h3>
+          </td>
+          <td class="align-middle text-dark" style="width: 5%">
+            <h3 class="db-entry font-weight-light"><%= c[2] %></h3>
+          </td>
+          <td class="align-middle text-dark" style="width: 20%">
+            <h3 class="db-entry font-weight-light"><%= c[3] %></h3>
+          </td>
+          <td class="align-middle text-dark" style="width: 20%">
+            <h3 class="db-entry"><strong><%= c[4] %></strong></h3>
+          </td>
+          <% if(["Argentinien","Chile","Cuba","Peru","USA"].includes(c[4])) { %>
+            <td class="align-middle text-dark" style="width: 5%">
+              <h3 class="db-entry"><strong>2</strong></h3>
+            </td>
+          <% } else { %>
+            <td class="align-middle text-dark" style="width: 5%">
+              <h3 class="db-entry"><strong>1</strong></h3>
+            </td>
+          <% } %>
+        </tr>
+      <% } %>
+    </table>
   <% } %>
 
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

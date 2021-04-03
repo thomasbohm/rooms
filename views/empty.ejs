@@ -22,19 +22,10 @@
   <script>
     function startTime() {
       const today = new Date();
-      let h = today.getHours();
-      let m = today.getMinutes();
-      h = checkTime(h);
-      m = checkTime(m);
+      let h = today.getHours().toString().padStart(2, '0');
+      let m = today.getMinutes().toString().padStart(2, '0');
       $("#clock").text(h + ":" + m);
       let t = setTimeout(startTime, 500);
-    }
-
-    function checkTime(i) {
-      if (i < 10) {
-        i = "0" + i
-      };
-      return i;
     }
   </script>
 </body>

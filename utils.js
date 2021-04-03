@@ -40,10 +40,15 @@ const types = {
 };
 
 const levels = ["A1", "A2", "B1", "B2", "C1", "C2"];
-  
+
+/**
+ * Parses the courses into the format { time: time, courses: [courses] }.
+ * @param {*} data all courses with full description for the day.
+ * @returns a list of courses per time slot.
+ */
 exports.parseCourses = function(data) {
   let times = data.flatMap(d => d[2]);
-  times = Array.from(new Set(times));
+  times = Array.from(new Set(times)); // remove duplicates
   times.sort();
 
   const coursesPerTime = times.flatMap(t => [{
@@ -56,15 +61,15 @@ exports.parseCourses = function(data) {
     const room = course[1];
     const time = course[2];
 
-    description = description.replace("/",""); // remove these terms from the description
-    description = description.replace(".1","");
+    description = description.replace("/","");  // remove these terms from the description
+    description = description.replace(".1",""); // A1.1 -> A1
     description = description.replace(".2","");
     description = description.replace(".3","");
     description = description.replace(".4","");
 
     let flag = "";
     for (const l in languages) {
-      if (languages.hasOwnProperty(l) && description.includes(l.charAt(0).toUpperCase() + l.slice(1))) {
+      if (description.includes(l.charAt(0).toUpperCase() + l.slice(1))) {
         flag = languages[l];
         break;
       }
@@ -72,7 +77,7 @@ exports.parseCourses = function(data) {
 
     let type = "";
     for (const t in types) {
-      if (types.hasOwnProperty(t) && description.includes(t)) {
+      if (description.includes(t)) {
         type = types[t];
         description = description.replace(t+" ","");
         break;
@@ -88,28 +93,29 @@ exports.parseCourses = function(data) {
       }
     }
 
-    for (const f of coursesPerTime) {
-      if (time === f.time) {
-        f.classes.push([flag, description, level, type, room]);
+    for (const timeSlot of coursesPerTime) {
+      if (time === timeSlot.time) {
+        timeSlot.classes.push([flag, description, level, type, room]);
         break;
       }
     }
   }
-
   return coursesPerTime;
 };
 
 /**
  * Returns a list of all upcoming courses.
  * @param {*} all The list of all courses for this day.
- * @param {*} debugDate If set, use this date.
- * @param {*} debugHour If set, use this hour.
- * @returns all upcoming courses.
+ * @param {string=} opt_debugDate If set, use this date.
+ * @param {number=} opt_debugHour If set, use this hour.
+ * @param {number=} opt_debugMinute If set, use this minute.
+ * @returns a list of all upcoming courses in format [ { time: time, courses: [courses] } ].
  */
-exports.getUpcomingCourses = function(all, debugDate, debugHour) {
-  const now = debugDate ? new Date(debugDate) : new Date();
-  if (debugHour) {
-    now.setHours(debugHour);
+exports.getUpcomingCourses = function(all, opt_debugDate, opt_debugHour, opt_debugMinute) {
+  const now = opt_debugDate ? new Date(opt_debugDate) : new Date();
+  if (opt_debugHour) {
+    now.setHours(opt_debugHour);
+    now.setMinutes(opt_debugMinute);
   }
   const lowerBounds = new Date(now - 15 * 60000); // minus 15 minutes
   //const upperBounds = new Date(now.getTime() + 15 * 60000);
@@ -117,7 +123,7 @@ exports.getUpcomingCourses = function(all, debugDate, debugHour) {
   let upcoming = [];
   for (let i = 0; i < all.length; i++) {
     const time = all[i].time;
-    let date = debugDate ? new Date(debugDate) : new Date();
+    let date = opt_debugDate ? new Date(opt_debugDate) : new Date();
     date.setHours(time.split(":")[0]);
     date.setMinutes(time.split(":")[1]);
 
@@ -128,6 +134,11 @@ exports.getUpcomingCourses = function(all, debugDate, debugHour) {
   return upcoming;
 };
 
+/**
+ * Returns a list of courses who fit onto the screen. If the next slot's courses fit onto the screen, include them as well.
+ * @param {*} upcoming All courses who are still schdeuled for the day. Sorted by time.
+ * @returns A list of all courses who fit onto the screen.
+ */
 exports.getDisplayedCourses = function(upcoming) {
   let displayed = [upcoming[0]];
 
