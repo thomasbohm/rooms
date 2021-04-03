@@ -107,15 +107,14 @@ exports.parseCourses = function(data) {
  * Returns a list of all upcoming courses.
  * @param {*} all The list of all courses for this day.
  * @param {string=} opt_debugDate If set, use this date.
- * @param {number=} opt_debugHour If set, use this hour.
- * @param {number=} opt_debugMinute If set, use this minute.
+ * @param {Array<number>=} opt_debugTime If set, use this hour.
  * @returns a list of all upcoming courses in format [ { time: time, courses: [courses] } ].
  */
-exports.getUpcomingCourses = function(all, opt_debugDate, opt_debugHour, opt_debugMinute) {
+exports.getUpcomingCourses = function(all, opt_debugDate, opt_debugTime) {
   const now = opt_debugDate ? new Date(opt_debugDate) : new Date();
-  if (opt_debugHour) {
-    now.setHours(opt_debugHour);
-    now.setMinutes(opt_debugMinute);
+  if (opt_debugDate && opt_debugTime) {
+    now.setHours(opt_debugTime[0]);
+    now.setMinutes(opt_debugTime[1]);
   }
   const lowerBounds = new Date(now - 15 * 60000); // minus 15 minutes
   //const upperBounds = new Date(now.getTime() + 15 * 60000);

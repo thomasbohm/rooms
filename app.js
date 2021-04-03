@@ -11,20 +11,19 @@ app.use(compression()); // improves performance
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 
+const DEBUG_ENABLED = false;
 const DEBUG_DATE = '2019-06-05';
-const DEBUG_HOUR = 10;
-const DEBUG_MINUTE = 0;
-const DEBUG_ENABLED = true;
+const DEBUG_TIME = [10, 20]; // hours, minutes
 
 app.get("/", function(req, res) {
   let now = new Date();
   if (DEBUG_ENABLED) {
     now = new Date(DEBUG_DATE);
-    now.setHours(DEBUG_HOUR);
-    now.setMinutes(DEBUG_MINUTE);
+    now.setHours(DEBUG_TIME[0]);
+    now.setMinutes(DEBUG_TIME[1]);
     console.log(now.toString());
   }
-  const fromDate = { day: now.getDay(), month: now.getMonth() + 1, year: now.getFullYear() };
+  const fromDate = { day: now.getDate(), month: now.getMonth() + 1, year: now.getFullYear() };
   const toDate = fromDate;
   const url = `http://sprachschule-aktiv-muenchen.com/mrbs/web/report.php?from_day=${fromDate.day}&from_month=${fromDate.month}&from_year=${fromDate.year}&to_day=${toDate.day}&to_month=${toDate.month}&to_year=${toDate.year}&areamatch=M%C3%BCnchen&roommatch=&namematch=&descrmatch=&creatormatch=&match_confirmed=2&output=0&output_format=1&sortby=s&sumby=d&phase=2&datatable=1`;
 
@@ -39,7 +38,7 @@ app.get("/", function(req, res) {
         
         let upcomingCourses = [];
         if (DEBUG_ENABLED) {
-          upcomingCourses = utils.getUpcomingCourses(allCourses, DEBUG_DATE, DEBUG_HOUR, DEBUG_MINUTE);
+          upcomingCourses = utils.getUpcomingCourses(allCourses, DEBUG_DATE, DEBUG_TIME);
         } else {
           upcomingCourses = utils.getUpcomingCourses(allCourses);
         }
@@ -55,5 +54,7 @@ app.get("/", function(req, res) {
 });
 
 app.listen(3000, function() {
-  console.log("Server started on port 3000.");
+  if (DEBUG_ENABLED) {
+    console.log("Server started on port 3000.");
+  }
 });
