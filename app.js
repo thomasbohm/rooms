@@ -12,8 +12,8 @@ app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 
 const DEBUG_ENABLED = false;
-const DEBUG_DATE = '2019-06-05';
-const DEBUG_TIME = [10, 20]; // hours, minutes
+const DEBUG_DATE = '2019-09-11';
+const DEBUG_TIME = [9, 20]; // hours, minutes
 
 app.get("/", function(req, res) {
   let now = new Date();
