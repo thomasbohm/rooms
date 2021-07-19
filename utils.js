@@ -141,13 +141,13 @@ exports.getUpcomingCourses = function(all, opt_debugDate, opt_debugTime) {
 exports.getDisplayedCourses = function(upcoming) {
   let displayed = [upcoming[0]];
 
-  if (upcoming.length > 1 && (upcoming[0].classes.length + upcoming[1].classes.length) <= 10 ) {
+  if (upcoming.length > 1 && (upcoming[0].classes.length + upcoming[1].classes.length) <= 8 ) {
     displayed.push(upcoming[1]);
   
     if (upcoming.length > 2 && (upcoming[0].classes.length + upcoming[1].classes.length + upcoming[2].classes.length) <= 7 ) {
       displayed.push(upcoming[2]);
     
-      if (upcoming.length > 3 && (upcoming[0].classes.length + upcoming[1].classes.length + upcoming[2].classes.length + upcoming[3].classes.length) <= 4 ) {
+      if (upcoming.length > 3 && (upcoming[0].classes.length + upcoming[1].classes.length + upcoming[2].classes.length + upcoming[3].classes.length) <= 6 ) {
         displayed.push(upcoming[3]);
       }
     }
