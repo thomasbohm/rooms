@@ -36,7 +36,8 @@ const types = {
   SIK: "Semi-intensiv",
   IK: "Intensiv",
   GK: "Gruppe",
-  PK: "Privat"
+  PK: "Privat",
+  AK: "Abend"
 };
 
 const levels = ["A1", "A2", "B1", "B2", "C1", "C2"];
@@ -135,7 +136,7 @@ exports.getUpcomingCourses = function(all, opt_debugDate, opt_debugTime) {
 
 /**
  * Returns a list of courses who fit onto the screen. If the next slot's courses fit onto the screen, include them as well.
- * @param {*} upcoming All courses who are still schdeuled for the day. Sorted by time.
+ * @param {*} upcoming All courses who are still scheduled for the day. Sorted by time.
  * @returns A list of all courses who fit onto the screen.
  */
 exports.getDisplayedCourses = function(upcoming) {
