@@ -1,0 +1,4 @@
+[Desktop Entry]
+Type=Application
+Name=Webserver
+Exec=/bin/bash /home/pi/Desktop/webserver.sh

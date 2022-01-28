@@ -3,3 +3,6 @@ A voluntary project for the [Sprachschule Aktiv language school](https://www.spr
 
 By building this simple web-app using Node.js and Express, automatic fetching and displaying of data without any need for manual interaction can be achieved.
 ![Screenshot](./screenshot.png)
+
+## Raspberry Pi Autostart Setup
+Place the autostart files in `/home/pi/.config/autostart/` and adjust their paths to the bash scripts.
