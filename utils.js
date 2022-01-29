@@ -1,35 +1,35 @@
-const languages = {
-  deutsch: '🇩🇪',
-  englisch: '🇬🇧',
-  spanisch: '🇪🇸',
-  albanisch: '🇦🇱',
-  arabisch: '🇲🇦',
-  bulgarisch: '🇧🇬',
-  chinesisch: '🇨🇳',
-  dänisch: '🇩🇰',
-  estnisch: '🇪🇪',
-  französisch: '🇫🇷',
-  georgisch: '🇬🇪',
-  griechisch: '🇬🇷',
-  hindi: '🇮🇳',
-  italienisch: '🇮🇹',
-  japanisch: '🇯🇵',
-  koreanisch: '🇰🇷',
-  kroatisch: '🇭🇷',
-  niederländisch: '🇳🇱',
-  persisch: '🇮🇷',
-  portugiesisch: '🇵🇹',
-  polnisch: '🇵🇱',
-  rumänisch: '🇹🇩',
-  russisch: '🇷🇺',
-  schwedisch: '🇸🇪',
-  serbisch: '🇷🇸',
-  slowakisch: '🇸🇰',
-  thailändisch: '🇹🇭',
-  tschechisch: '🇨🇿',
-  türkisch: '🇹🇷',
-  ukrainisch: '🇺🇦',
-  ungarisch: '🇭🇺'
+const flagForLanguage = {
+  deutsch: 'deutsch.png',
+  englisch: 'englisch.png',
+  spanisch: 'spanisch.png',
+  albanisch: 'albanisch.png',
+  arabisch: 'arabisch.png',
+  bulgarisch: 'bulgarisch.png',
+  chinesisch: 'chinesisch.png',
+  dänisch: 'dänisch.png',
+  estnisch: 'estnisch.png',
+  französisch: 'französisch.png',
+  georgisch: 'georgisch.png',
+  griechisch: 'griechisch.png',
+  hindi: 'hindi.png',
+  italienisch: 'italienisch.png',
+  japanisch: 'japanisch.png',
+  koreanisch: 'koreanisch.png',
+  kroatisch: 'kroatisch.png',
+  niederländisch: 'niederländisch.png',
+  persisch: 'persisch.png',
+  portugiesisch: 'portugiesisch.png',
+  polnisch: 'polnisch.png',
+  rumänisch: 'rumänisch.png',
+  russisch: 'russisch.png',
+  schwedisch: 'schwedisch.png',
+  // serbisch: 'serbisch.png',
+  slowakisch: 'slowakisch.png',
+  thailändisch: 'thailändisch.png',
+  tschechisch: 'tschechisch.png',
+  türkisch: 'türkisch.png',
+  ukrainisch: 'ukrainisch.png',
+  ungarisch: 'ungarisch.png'
 };
 
 const types = {
@@ -69,9 +69,9 @@ exports.parseCourses = function(data) {
     description = description.replace(".4","");
 
     let flag = "";
-    for (const l in languages) {
+    for (const l in flagForLanguage) {
       if (description.includes(l.charAt(0).toUpperCase() + l.slice(1))) {
-        flag = languages[l];
+        flag = flagForLanguage[l];
         break;
       }
     }

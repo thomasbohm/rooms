@@ -29,7 +29,9 @@
       <% for (const c of timeSlot.classes) { %>
         <tr>
           <td class="text-center align-middle text-dark" style="width: 5%;">
-            <h2 class="db-flag mb-0"><%= c[0] %></h2>
+            <% if(c[0]){ %>
+              <img class="db-flag mb-0" src=<%= c[0] %> />
+            <% } %>
           </td>
           <td class="align-middle text-dark" style="width: 40%">
             <h3 class="db-entry font-weight-light"><%= c[1] %></h3>
