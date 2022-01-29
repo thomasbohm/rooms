@@ -1,14 +1,17 @@
 const express = require("express");
-const compression = require('compression')
+const compression = require("compression");
 const fetchUrl = require("fetch").fetchUrl;
-const Papa = require('papaparse');
-const utils = require('./utils.js');
+const Papa = require("papaparse");
+const path = require("path")
+
+const utils = require("./utils.js");
 
 const app = express();
 
+app.set("views", path.join(__dirname, "/views"));
 app.set("view engine", "ejs");
 app.use(compression()); // improves performance
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
 
 const DEBUG_ENABLED = false;

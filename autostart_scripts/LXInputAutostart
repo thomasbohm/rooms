@@ -1,5 +1,0 @@
-[Desktop Entry]
-Type=Application
-NoDisplay=true
-Exec= sh -c 'xset m 20/10 10 r rate 500 33 b on; xinput --set-prop "pointer:MOSART Semi. 2.4G INPUT DEVICE Mouse" "libinput Accel Speed" 1,000000'
-NotShowIn=GNOME;KDE;XFCE;
