@@ -23,7 +23,7 @@ const flagForLanguage = {
   rumänisch: 'rumänisch.png',
   russisch: 'russisch.png',
   schwedisch: 'schwedisch.png',
-  // serbisch: 'serbisch.png',
+  serbisch: 'serbisch.png',
   slowakisch: 'slowakisch.png',
   thailändisch: 'thailändisch.png',
   tschechisch: 'tschechisch.png',
