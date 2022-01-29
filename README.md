@@ -24,7 +24,7 @@ Then, clone the repository and install the node dependencies:
 
 ### 3. Automatically start server & a browser window
 1. `sudo apt install midori matchbox x11-server-utils xinit unclutter`
-2. `sudo nano /etc/rc.local`. 
+2. `sudo nano /etc/rc.local`
 3. Add this line before `exit 0`:
     
     `(/bin/sleep 20 && xinit /home/pi/rooms/autostart.sh) &`

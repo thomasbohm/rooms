@@ -12,6 +12,6 @@ node /home/pi/rooms/app.js &
 # Hide the cursor
 unclutter &
 
-# Show a browser tap
+# Show a browser tab
 matchbox-window-manager &
 midori -e Fullscreen -a http://localhost:3000
