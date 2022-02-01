@@ -33,6 +33,7 @@ app.get("/", function(req, res) {
   fetchUrl(url, function(error, meta, body) {
     if (!body) {
       res.render("empty");
+      return;
     }
     
     let data = body.toString().split('\n');
