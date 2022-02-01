@@ -22,9 +22,22 @@ Then, clone the repository and install the node dependencies:
 2. `cd rooms`
 3. `npm i`
 
-### 3. Automatically start server & a browser window
+### 3. Automatically start a browser window
 1. `sudo apt install midori matchbox x11-server-utils xinit unclutter`
 2. `sudo nano /etc/rc.local`
 3. Add this line before `exit 0`:
     
     `(/bin/sleep 20 && xinit /home/pi/rooms/autostart.sh) &`
+4. Restart the pi daily such that it recovers from random browser crashes.
+    
+    1. `sudo crontab -e`
+    2. `@daily root /sbin/reboot`
+
+### 4. Manage the webserver using PM2
+Using PM2, the node app will automatically restart if it crashes.
+1. `sudo npm install -g pm2`
+2. `pm2 status`
+3. `pm2 start /home/pi/rooms/app.js --name rooms`
+4. `pm2 save`
+5. `pm2 startup`, then copy & paste the printed command.
+6. `sudo reboot`
