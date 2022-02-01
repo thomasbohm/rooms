@@ -31,6 +31,10 @@ app.get("/", function(req, res) {
   const url = `http://sprachschule-aktiv-muenchen.com/mrbs/web/report.php?from_day=${fromDate.day}&from_month=${fromDate.month}&from_year=${fromDate.year}&to_day=${toDate.day}&to_month=${toDate.month}&to_year=${toDate.year}&areamatch=M%C3%BCnchen&roommatch=&namematch=&descrmatch=&creatormatch=&match_confirmed=2&output=0&output_format=1&sortby=s&sumby=d&phase=2&datatable=1`;
 
   fetchUrl(url, function(error, meta, body) {
+    if (!body) {
+      res.render("empty");
+    }
+    
     let data = body.toString().split('\n');
     data = data.slice(1, data.length - 1).join('\n'); // remove header and empty last row
 
